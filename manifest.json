@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Facebook Reels Blocker (except /reels)",
+  "version": "1.0.0",
+  "description": "Hide Facebook Reels across the site except on the dedicated /reels page.",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_title": "FB Reels/Stories/Videos Blocker"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.facebook.com/*"
+      ],
+      "js": ["src/content.js"],
+      "css": ["src/content.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "host_permissions": [
+    "*://*.facebook.com/*"
+  ]
+}
+
+

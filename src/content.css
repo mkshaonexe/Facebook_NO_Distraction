@@ -1,0 +1,80 @@
+/* Fallback CSS to hide obvious reels surfaces (except on /reels where JS bails out) */
+
+html:not([data-allow-reels]) a[href*="/reels/"],
+html:not([data-allow-reels]) [aria-label*="Reels" i],
+html:not([data-allow-reels]) [aria-label*="Reel" i],
+html:not([data-allow-reels]) [class*="reel" i] {
+  display: none !important;
+  visibility: hidden !important;
+  max-height: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Hide Stories quickly by default; JS adds data-allow-stories when user disables blocking */
+html:not([data-allow-stories]) [aria-label*="Stories" i],
+html:not([data-allow-stories]) a[href*="/stories/"],
+html:not([data-allow-stories]) div[id^="stories"],
+html:not([data-allow-stories]) div[role="feed"] [aria-label*="Create story" i] {
+  display: none !important;
+  visibility: hidden !important;
+  max-height: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Optional CSS assist for ads: hide posts that visibly link to ads/about when ads blocking is on */
+html[data-block-ads="true"] [role="article"]:has(a[href*="/ads/about"]) {
+  display: none !important;
+}
+
+html[data-home-feed-hidden="true"] [role="feed"],
+html[data-home-feed-hidden="true"] [data-pagelet^="FeedUnit"],
+html[data-home-feed-hidden="true"] [data-pagelet*="VideoHome"],
+html[data-home-feed-hidden="true"] [aria-label*="Suggested" i],
+html[data-home-feed-hidden="true"] [aria-label*="Create a post" i] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+html[data-home-feed-hidden="true"] [role="main"] {
+  min-height: 200px;
+}
+
+/* When hiding home feed: blank out the entire center column */
+html[data-home-feed-hidden="true"] [role="main"] > :not(style):not(script) {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Hide left and right sidebars on the Home page */
+html[data-home-sidebars-hidden="true"] [data-pagelet^="LeftRail"],
+html[data-home-sidebars-hidden="true"] [data-pagelet^="LeftNav"],
+html[data-home-sidebars-hidden="true"] [role="complementary"],
+html[data-home-sidebars-hidden="true"] [data-pagelet^="RightRail"],
+html[data-home-sidebars-hidden="true"] [data-pagelet="PageRightRail"],
+html[data-home-sidebars-hidden="true"] [aria-label*="Sponsored" i],
+html[data-home-sidebars-hidden="true"] [aria-label*="Contacts" i] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Tighten center column when sidebars are hidden */
+html[data-home-sidebars-hidden="true"] [role="main"] [data-pagelet^="FeedUnit"],
+html[data-home-sidebars-hidden="true"] [role="main"] [role="feed"] {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Hide notification + messenger badges */
+html[data-hide-notification-badge="true"] span.x6s0dn4.xtk6v10.x3nfvp2.x5yr21d.xl56j7k.xexx8yu.x18d9i69.xaso8d8.x1gabggj.xh8yej3,
+html[data-hide-notification-badge="true"] span.x3nfvp2.x1nxh6w3.xk50ysn.xhvdbge.xo5v014.xnyloks.xdi0jry.x1ekkm8c.x1143rjc.xum4auv.xj21bgg,
+html[data-hide-notification-badge="true"] span[data-nobadge-checked="1"],
+html[data-hide-notification-badge="true"] div[data-nobadge-checked="1"],
+html[data-hide-notification-badge="true"] [aria-label*="Notifications" i] span.xtk6v10,
+html[data-hide-notification-badge="true"] [aria-label*="Messenger" i] span.xtk6v10 {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+

@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FB Blocker</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Facebook Cleaner</h1>
+        <button class="badge-btn" id="devBtn" title="Developer">mkshaon7</button>
+      </div>
+      <div class="toggle">
+        <label class="switch">
+          <input id="reels" type="checkbox" />
+          <span class="slider"></span>
+        </label>
+        <span class="label">Block Reels</span>
+      </div>
+      <div class="toggle">
+        <label class="switch">
+          <input id="stories" type="checkbox" />
+          <span class="slider"></span>
+        </label>
+        <span class="label">Block Stories</span>
+      </div>
+      <div class="toggle">
+        <label class="switch">
+          <input id="home" type="checkbox" />
+          <span class="slider"></span>
+        </label>
+        <span class="label">Hide Home Feed</span>
+      </div>
+      <div class="toggle">
+        <label class="switch">
+          <input id="ads" type="checkbox" />
+          <span class="slider"></span>
+        </label>
+        <span class="label">Block FB Ads (Sponsored)</span>
+      </div>
+      <div class="toggle">
+        <label class="switch">
+          <input id="notifications" type="checkbox" />
+          <span class="slider"></span>
+        </label>
+        <span class="label">Hide Notification Red Dots</span>
+      </div>
+      <p class="hint">Changes apply instantly on open Facebook tabs.</p>
+    </div>
+    <script type="module" src="popup.js"></script>
+  </body>
+  </html>
+
+
