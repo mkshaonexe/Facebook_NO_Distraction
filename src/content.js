@@ -349,6 +349,31 @@
         }
       });
     } catch {}
+
+    // Listen for direct messages from the popup for immediate updates
+    try {
+      chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+        if (!message || message.type !== 'settings:update' || !message.payload) return;
+        const payload = message.payload || {};
+        let changed = false;
+        for (const key of ['blockReels', 'blockStories', 'blockAds', 'blockHomeFeed', 'hideNotificationBadge']) {
+          if (Object.prototype.hasOwnProperty.call(payload, key) && currentSettings[key] !== payload[key]) {
+            currentSettings[key] = payload[key];
+            changed = true;
+          }
+        }
+        if (changed) {
+          updateAllowFlag();
+          if (!isOnReelsRoute()) {
+            scanAndBlock(document);
+            removeEntryPointsNav();
+            if (currentSettings.hideNotificationBadge) {
+              removeNotificationBadges(document);
+            }
+          }
+        }
+      });
+    } catch {}
   }
 
   // Run immediately at document_start for fastest redirects

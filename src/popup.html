@@ -8,46 +8,64 @@
   </head>
   <body>
     <div class="container">
-      <div class="header">
-        <h1>Facebook Cleaner</h1>
-        <button class="badge-btn" id="devBtn" title="Developer">mkshaon7</button>
+      <h1 class="title">No distraction facebook</h1>
+
+      <div class="panel">
+        <div class="tile">
+          <div class="tile-text">
+            <div class="tile-title">Block Reels</div>
+          </div>
+          <label class="switch">
+            <input id="reels" type="checkbox" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="tile">
+          <div class="tile-text">
+            <div class="tile-title">Block Stories</div>
+          </div>
+          <label class="switch">
+            <input id="stories" type="checkbox" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="tile">
+          <div class="tile-text">
+            <div class="tile-title">Hide Home Feed</div>
+          </div>
+          <label class="switch">
+            <input id="home" type="checkbox" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="tile">
+          <div class="tile-text">
+            <div class="tile-title">Block FB Ads</div>
+            <span class="chip chip-premium">Premium</span>
+          </div>
+          <label class="switch">
+            <input id="ads" type="checkbox" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="tile">
+          <div class="tile-text">
+            <div class="tile-title">Hide Notification Badges</div>
+            <span class="chip chip-beta">beta</span>
+          </div>
+          <label class="switch">
+            <input id="notifications" type="checkbox" />
+            <span class="slider"></span>
+          </label>
+        </div>
       </div>
-      <div class="toggle">
-        <label class="switch">
-          <input id="reels" type="checkbox" />
-          <span class="slider"></span>
-        </label>
-        <span class="label">Block Reels</span>
-      </div>
-      <div class="toggle">
-        <label class="switch">
-          <input id="stories" type="checkbox" />
-          <span class="slider"></span>
-        </label>
-        <span class="label">Block Stories</span>
-      </div>
-      <div class="toggle">
-        <label class="switch">
-          <input id="home" type="checkbox" />
-          <span class="slider"></span>
-        </label>
-        <span class="label">Hide Home Feed</span>
-      </div>
-      <div class="toggle">
-        <label class="switch">
-          <input id="ads" type="checkbox" />
-          <span class="slider"></span>
-        </label>
-        <span class="label">Block FB Ads (Sponsored)</span>
-      </div>
-      <div class="toggle">
-        <label class="switch">
-          <input id="notifications" type="checkbox" />
-          <span class="slider"></span>
-        </label>
-        <span class="label">Hide Notification Red Dots</span>
-      </div>
-      <p class="hint">Changes apply instantly on open Facebook tabs.</p>
+
+      <p class="status" id="statusText">Extension is enabled</p>
+      <p class="credits">Developed by mkshaon</p>
     </div>
     <script type="module" src="popup.js"></script>
   </body>
