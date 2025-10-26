@@ -5,10 +5,17 @@
   const DEFAULT_SETTINGS = {
     blockReels: true,
     blockStories: true,
-    blockAds: true,
+    blockAds: false, // Default to false since it's premium
     blockHomeFeed: true,
     hideNotificationBadge: true
   };
+
+  // Check if user has premium access
+  function isPremiumUser() {
+    // For now, return false to demonstrate premium lock
+    // In a real implementation, this would check against a backend service
+    return false;
+  }
 
   let currentSettings = { ...DEFAULT_SETTINGS };
 
@@ -176,7 +183,8 @@
       if (currentSettings.blockReels && isLikelyReels(el)) hideElement(el.closest('[data-pagelet], [role="article"], div'));
     }
 
-    if (currentSettings.blockAds) {
+    // Only block ads if user has premium access and setting is enabled
+    if (currentSettings.blockAds && isPremiumUser()) {
       // Strategy A: catch the transparency link first; it's most reliable
       const aboutLinks = root.querySelectorAll('a[href*="/ads/about" i], a[href*="/ad_preferences" i], a[href*="/ads/activity" i], a[href*="/business/help" i]');
       aboutLinks.forEach(a => {

@@ -1,7 +1,7 @@
 const DEFAULT_SETTINGS = {
   blockReels: true,
   blockStories: true,
-  blockAds: true,
+  blockAds: false, // Default to false since it's premium
   blockHomeFeed: true,
   hideNotificationBadge: true
 };
