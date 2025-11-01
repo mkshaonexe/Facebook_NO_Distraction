@@ -23,11 +23,6 @@ html:not([data-allow-stories]) div[role="feed"] [aria-label*="Create story" i] {
   overflow: hidden !important;
 }
 
-/* Optional CSS assist for ads: hide posts that visibly link to ads/about when ads blocking is on */
-html[data-block-ads="true"] [role="article"]:has(a[href*="/ads/about"]) {
-  display: none !important;
-}
-
 html[data-home-feed-hidden="true"] [role="feed"],
 html[data-home-feed-hidden="true"] [data-pagelet^="FeedUnit"],
 html[data-home-feed-hidden="true"] [data-pagelet*="VideoHome"],
@@ -53,7 +48,6 @@ html[data-home-sidebars-hidden="true"] [data-pagelet^="LeftNav"],
 html[data-home-sidebars-hidden="true"] [role="complementary"],
 html[data-home-sidebars-hidden="true"] [data-pagelet^="RightRail"],
 html[data-home-sidebars-hidden="true"] [data-pagelet="PageRightRail"],
-html[data-home-sidebars-hidden="true"] [aria-label*="Sponsored" i],
 html[data-home-sidebars-hidden="true"] [aria-label*="Contacts" i] {
   display: none !important;
   visibility: hidden !important;

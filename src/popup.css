@@ -19,7 +19,6 @@
 
 /* Chips */
 .chip { display: inline-flex; align-items: center; justify-content: center; height: 20px; padding: 0 8px; border-radius: 999px; font-size: 11px; border: 1px solid #e5e7eb; }
-.chip-premium { color: #ef4444; font-weight: 700; background: #fff; }
 .chip-beta { color: #64748b; background: #f3f4f6; }
 
 .switch { position: relative; display: inline-block; width: 46px; height: 26px; }
@@ -28,19 +27,5 @@
 .slider:before { content: ""; position: absolute; height: 20px; width: 20px; left: 3px; top: 3px; background: white; transition: .2s; border-radius: 50%; box-shadow: 0 1px 2px rgba(0,0,0,.3); }
 input:checked + .slider { background: #3b82f6; }
 input:checked + .slider:before { transform: translateX(20px); }
-
-.premium-row { position: relative; }
-.premium-row .badge { font-size: 11px; color: #6b7280; background: #f3f4f6; border: 1px solid #e5e7eb; padding: 2px 6px; border-radius: 999px; margin-left: auto; }
-.premium-row .lock { color: #6b7280; display: inline-flex; margin-left: 6px; }
-
-.modal { position: fixed; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,.25); }
-.modal[hidden] { display: none; }
-.modal-card { background: #fff; color: #111827; width: 320px; padding: 16px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.2); }
-.modal-card h2 { margin: 0 0 8px; font-size: 16px; }
-.modal-card p { margin: 0 0 12px; font-size: 13px; color: #374151; }
-.actions { display: flex; justify-content: flex-end; gap: 8px; }
-.btn { background: #3b82f6; color: #fff; border: 0; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 13px; }
-.btn-secondary { background: #6b7280; }
-.btn:hover { opacity: 0.9; }
 
 

@@ -5,17 +5,9 @@
   const DEFAULT_SETTINGS = {
     blockReels: true,
     blockStories: true,
-    blockAds: false, // Default to false since it's premium
     blockHomeFeed: true,
     hideNotificationBadge: true
   };
-
-  // Check if user has premium access
-  function isPremiumUser() {
-    // For now, return false to demonstrate premium lock
-    // In a real implementation, this would check against a backend service
-    return false;
-  }
 
   let currentSettings = { ...DEFAULT_SETTINGS };
 
@@ -69,7 +61,6 @@
     } else {
       html.removeAttribute('data-allow-reels');
     }
-    html.toggleAttribute('data-block-ads', !!currentSettings.blockAds);
     if (currentSettings.blockStories) {
       html.removeAttribute('data-allow-stories');
     } else {
@@ -94,9 +85,9 @@
     html.toggleAttribute('data-hide-notification-badge', !!currentSettings.hideNotificationBadge);
   }
 
-  function hideElement(el) {
+  function hideElement(el, type = 'reels') {
     if (!el) return;
-    el.setAttribute('data-reels-blocked', 'true');
+    el.setAttribute(`data-blocked-${type}`, 'true');
     el.style.display = 'none';
     el.style.visibility = 'hidden';
     el.style.maxHeight = '0px';
@@ -104,12 +95,23 @@
     el.style.overflow = 'hidden';
   }
 
-  function findPostContainer(fromEl) {
-    if (!fromEl) return null;
-    return (
-      fromEl.closest('[data-pagelet*="FeedUnit"], [role="article"], [aria-posinset], [data-ad-comet-preview]') ||
-      fromEl.closest('div')
-    );
+  function showElement(el) {
+    if (!el) return;
+    el.removeAttribute('data-blocked-reels');
+    el.removeAttribute('data-blocked-stories');
+    el.removeAttribute('data-blocked-notifications');
+    el.style.display = '';
+    el.style.visibility = '';
+    el.style.maxHeight = '';
+    el.style.height = '';
+    el.style.overflow = '';
+  }
+
+  function restoreElements(type) {
+    const selector = `[data-blocked-${type}="true"]`;
+    document.querySelectorAll(selector).forEach(el => {
+      showElement(el);
+    });
   }
 
   function isLikelyReels(el) {
@@ -142,17 +144,18 @@
 
     scope.querySelectorAll(badgeSelectors.join(',')).forEach(el => {
       if (!(el instanceof HTMLElement)) return;
+      if (el.getAttribute && el.getAttribute('data-blocked-notifications') === 'true') return;
       if (el.innerText && /\d+/.test(el.innerText.trim())) {
-        hideElement(el);
+        hideElement(el, 'notifications');
         return;
       }
       const bg = (el.style && el.style.backgroundColor) || '';
       if (bg && bg.toLowerCase() !== 'transparent') {
-        hideElement(el);
+        hideElement(el, 'notifications');
       }
       const className = el.className || '';
       if (typeof className === 'string' && className.includes('xtk6v10')) {
-        hideElement(el);
+        hideElement(el, 'notifications');
       }
     });
   }
@@ -160,64 +163,32 @@
   function scanAndBlock(root) {
     if (isOnReelsRoute()) return; // do nothing on reels page
 
-    const candidates = [];
+    // Only process if blocking is enabled
+    if (currentSettings.blockReels) {
+      const candidates = [];
 
-    // Feed units, right rail modules, story-like carousels, video trays
-    candidates.push(
-      ...root.querySelectorAll([
-        '[aria-label*="Reels" i]',
-        '[aria-label*="Reel" i]',
-        'a[href*="/reels/"]',
-        'a[role="link"][href*="/reel/"]',
-        'a[role="link"][href*="/reels/clip/"]',
-        'div[role="article"]',
-        'div[role="feed"] > div',
-        'div[role="complementary"]',
-        'div[id^="stories"][id*="reel" i]',
-        'div[class*="reel" i]'
-      ].join(','))
-    );
+      // Feed units, right rail modules, story-like carousels, video trays
+      candidates.push(
+        ...root.querySelectorAll([
+          '[aria-label*="Reels" i]',
+          '[aria-label*="Reel" i]',
+          'a[href*="/reels/"]',
+          'a[role="link"][href*="/reel/"]',
+          'a[role="link"][href*="/reels/clip/"]',
+          'div[role="article"]',
+          'div[role="feed"] > div',
+          'div[role="complementary"]',
+          'div[id^="stories"][id*="reel" i]',
+          'div[class*="reel" i]'
+        ].join(','))
+      );
 
-    for (const el of candidates) {
-      if (el.getAttribute && el.getAttribute('data-reels-blocked') === 'true') continue;
-      if (currentSettings.blockReels && isLikelyReels(el)) hideElement(el.closest('[data-pagelet], [role="article"], div'));
-    }
-
-    // Only block ads if user has premium access and setting is enabled
-    if (currentSettings.blockAds && isPremiumUser()) {
-      // Strategy A: catch the transparency link first; it's most reliable
-      const aboutLinks = root.querySelectorAll('a[href*="/ads/about" i], a[href*="/ad_preferences" i], a[href*="/ads/activity" i], a[href*="/business/help" i]');
-      aboutLinks.forEach(a => {
-        const post = findPostContainer(a);
-        if (post && post.getAttribute('data-ads-blocked') !== 'true') {
-          post.setAttribute('data-ads-blocked', 'true');
-          hideElement(post);
+      for (const el of candidates) {
+        if (el.getAttribute && el.getAttribute('data-blocked-reels') === 'true') continue;
+        if (isLikelyReels(el)) {
+          hideElement(el.closest('[data-pagelet], [role="article"], div'), 'reels');
         }
-      });
-
-      // Strategy B: per-post text/aria signals as fallback
-      const sponsoredKeywords = [
-        'Sponsored', 'Publicidad', 'Gesponsert', 'Sponsorizzato', 'Sponsorisé', 'Sponsorisée', 'Sponsorizat',
-        'Спонсируемая', 'реклама', 'реклам', '赞助', '赞助内容', '広告', 'বিজ্ঞাপন', 'স্পনসরড', 'مُموَّل', 'إعلان',
-        'Được tài trợ', 'Patrocinado', 'Patrocinada', 'Sponsrad', 'Sponzorované', 'Propaganda', 'Reklam'
-      ];
-
-      const posts = root.querySelectorAll('[role="article"], [data-pagelet^="FeedUnit"], [aria-posinset], [data-pagelet*="RightRail"], [role="complementary"] div');
-      posts.forEach(post => {
-        if (!post || post.getAttribute('data-ads-blocked') === 'true') return;
-        const text = (post.innerText || '').slice(0, 800);
-        const hasAriaSponsored = !!post.querySelector('[aria-label*="Sponsored" i], [aria-labelledby*="sponsored" i], [aria-label*="Publicidad" i]');
-        const hasKeyword = text && sponsoredKeywords.some(k => text.indexOf(k) !== -1);
-        // Some modules have an inline transparent clickable area that opens ad details
-        const hasAdLink = !!post.querySelector('a[href*="/ads/about" i], a[href*="/ad_preferences" i], a[href*="/ads/activity" i]');
-        if (hasAriaSponsored || hasKeyword) {
-          post.setAttribute('data-ads-blocked', 'true');
-          hideElement(post.closest('[data-pagelet], [role="article"], div'));
-        } else if (hasAdLink) {
-          post.setAttribute('data-ads-blocked', 'true');
-          hideElement(post.closest('[data-pagelet], [role="article"], div'));
-        }
-      });
+      }
     }
 
     if (currentSettings.hideNotificationBadge) {
@@ -248,19 +219,39 @@
   function removeEntryPointsNav() {
     if (isOnReelsRoute()) return;
 
-    if (currentSettings.blockReels) {
-      const links = document.querySelectorAll('a[href*="/reels/"]');
-      links.forEach(link => hideElement(link.closest('a, div, li')));
-    }
+    // Handle reels links
+    const reelsLinks = document.querySelectorAll('a[href*="/reels/"]');
+    reelsLinks.forEach(link => {
+      const container = link.closest('a, div, li');
+      if (currentSettings.blockReels) {
+        if (container && container.getAttribute('data-blocked-reels') !== 'true') {
+          hideElement(container, 'reels');
+        }
+      } else {
+        if (container && container.getAttribute('data-blocked-reels') === 'true') {
+          showElement(container);
+        }
+      }
+    });
 
-    if (currentSettings.blockStories) {
-      const storySelectors = [
-        '[aria-label*="Stories" i]',
-        'a[href*="/stories/"]',
-        'div[id^="stories"]'
-      ];
-      document.querySelectorAll(storySelectors.join(',')).forEach(el => hideElement(el.closest('div, li')));
-    }
+    // Handle stories
+    const storySelectors = [
+      '[aria-label*="Stories" i]',
+      'a[href*="/stories/"]',
+      'div[id^="stories"]'
+    ];
+    document.querySelectorAll(storySelectors.join(',')).forEach(el => {
+      const container = el.closest('div, li');
+      if (currentSettings.blockStories) {
+        if (container && container.getAttribute('data-blocked-stories') !== 'true') {
+          hideElement(container, 'stories');
+        }
+      } else {
+        if (container && container.getAttribute('data-blocked-stories') === 'true') {
+          showElement(container);
+        }
+      }
+    });
   }
 
   async function main() {
@@ -339,13 +330,29 @@
       chrome.storage.onChanged.addListener((changes, area) => {
         if (area !== 'sync') return;
         let changed = false;
-        for (const key of ['blockReels', 'blockStories', 'blockAds', 'blockHomeFeed', 'hideNotificationBadge']) {
+        // Store old values before updating
+        const oldBlockReels = currentSettings.blockReels;
+        const oldBlockStories = currentSettings.blockStories;
+        const oldHideNotificationBadge = currentSettings.hideNotificationBadge;
+        
+        for (const key of ['blockReels', 'blockStories', 'blockHomeFeed', 'hideNotificationBadge']) {
           if (changes[key]) {
             currentSettings[key] = changes[key].newValue;
             changed = true;
           }
         }
         if (changed) {
+          // Restore elements if features were turned off
+          if (oldBlockReels && !currentSettings.blockReels) {
+            restoreElements('reels');
+          }
+          if (oldBlockStories && !currentSettings.blockStories) {
+            restoreElements('stories');
+          }
+          if (oldHideNotificationBadge && !currentSettings.hideNotificationBadge) {
+            restoreElements('notifications');
+          }
+          
           updateAllowFlag();
           if (!isOnReelsRoute()) {
             scanAndBlock(document);
@@ -363,14 +370,30 @@
       chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         if (!message || message.type !== 'settings:update' || !message.payload) return;
         const payload = message.payload || {};
+        // Store old values before updating
+        const oldBlockReels = currentSettings.blockReels;
+        const oldBlockStories = currentSettings.blockStories;
+        const oldHideNotificationBadge = currentSettings.hideNotificationBadge;
+        
         let changed = false;
-        for (const key of ['blockReels', 'blockStories', 'blockAds', 'blockHomeFeed', 'hideNotificationBadge']) {
+        for (const key of ['blockReels', 'blockStories', 'blockHomeFeed', 'hideNotificationBadge']) {
           if (Object.prototype.hasOwnProperty.call(payload, key) && currentSettings[key] !== payload[key]) {
             currentSettings[key] = payload[key];
             changed = true;
           }
         }
         if (changed) {
+          // Restore elements if features were turned off
+          if (oldBlockReels && !currentSettings.blockReels) {
+            restoreElements('reels');
+          }
+          if (oldBlockStories && !currentSettings.blockStories) {
+            restoreElements('stories');
+          }
+          if (oldHideNotificationBadge && !currentSettings.hideNotificationBadge) {
+            restoreElements('notifications');
+          }
+          
           updateAllowFlag();
           if (!isOnReelsRoute()) {
             scanAndBlock(document);
