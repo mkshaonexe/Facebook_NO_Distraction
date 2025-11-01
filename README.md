@@ -2,12 +2,12 @@
 
 **Transform your Facebook experience into a focused, distraction-free environment**
 
-A powerful Chrome/Edge extension that removes distracting elements from Facebook while preserving the content you actually want to see. Block reels, stories, ads, home feed distractions, and notification badges with granular control.
+A powerful Chrome/Edge extension that removes distracting elements from Facebook while preserving the content you actually want to see. Block reels, stories, home feed distractions, and notification badges with granular control.
 
-[![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-brightgreen?logo=googlechrome)](https://github.com/your-username/fb-no-distraction-v2)
-[![Edge Compatible](https://img.shields.io/badge/Edge-Compatible-blue?logo=microsoftedge)](https://github.com/your-username/fb-no-distraction-v2)
+[![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-brightgreen?logo=googlechrome)](https://github.com/mkshaonexe/Facebook_NO_Distraction)
+[![Edge Compatible](https://img.shields.io/badge/Edge-Compatible-blue?logo=microsoftedge)](https://github.com/mkshaonexe/Facebook_NO_Distraction)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](manifest.json)
+[![Version](https://img.shields.io/badge/Version-0.0.9-blue.svg)](manifest.json)
 
 ## ✨ Features
 
@@ -26,12 +26,6 @@ A powerful Chrome/Edge extension that removes distracting elements from Facebook
 - Option to completely hide the home feed for ultimate focus
 - Automatically hides left and right sidebars on home page
 - Preserves other Facebook functionality while removing feed distractions
-
-### 🚫 **Advanced Ad Blocking**
-- Intelligent sponsored content detection
-- Multi-language ad keyword recognition
-- Removes promoted posts and sponsored content
-- Uses multiple detection strategies for reliability
 
 ### 🔔 **Notification Badge Management**
 - Hide red notification badges on Messenger and Notifications
@@ -65,7 +59,6 @@ Firefox support is planned for future releases.
    - ✅ Block Reels
    - ✅ Block Stories  
    - ✅ Hide Home Feed
-   - ✅ Block FB Ads (Premium feature)
    - ✅ Hide Notification Badges (Beta)
 4. **Settings auto-save** and apply immediately
 
@@ -112,7 +105,7 @@ The extension detects and blocks content in multiple languages:
 
 ## 🔒 Privacy & Permissions
 
-- **Minimal Permissions**: Only requests storage and Facebook access
+- **Minimal Permissions**: Only requests storage, tabs, and Facebook access
 - **No Data Collection**: All settings stored locally
 - **No External Requests**: Works entirely offline
 - **Open Source**: Full transparency of functionality
@@ -122,10 +115,10 @@ The extension detects and blocks content in multiple languages:
 ### Local Development
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/fb-no-distraction-v2.git
+git clone https://github.com/mkshaonexe/Facebook_NO_Distraction.git
 
 # Navigate to project
-cd fb-no-distraction-v2
+cd Facebook_NO_Distraction
 
 # Load in browser for testing
 # Chrome: chrome://extensions/ -> Load unpacked
@@ -147,20 +140,22 @@ cd fb-no-distraction-v2
 
 ## 📝 Changelog
 
-### Version 1.0.0
-- ✅ Initial release with core blocking features
+### Version 0.0.9
+- ✅ Fixed missing tabs permission for Chrome extension compliance
+- ✅ Updated extension version and last update time
+
+### Version 0.0.8
+- ✅ Core blocking features: Reels, Stories, Home Feed, Notification Badges
 - ✅ Multi-language support for content detection
 - ✅ Real-time settings updates
 - ✅ Modern popup interface with toggle controls
-- ✅ Advanced ad blocking with multiple detection methods
 - ✅ Home feed and sidebar hiding functionality
-- ✅ Notification badge management
 
 ## 🤝 Support
 
-- **Issues**: [GitHub Issues](https://github.com/your-username/fb-no-distraction-v2/issues)
-- **Feature Requests**: [GitHub Discussions](https://github.com/your-username/fb-no-distraction-v2/discussions)
-- **Developer**: [@mkshaon](https://github.com/mkshaon)
+- **Issues**: [GitHub Issues](https://github.com/mkshaonexe/Facebook_NO_Distraction/issues)
+- **Feature Requests**: [GitHub Discussions](https://github.com/mkshaonexe/Facebook_NO_Distraction/discussions)
+- **Developer**: [@mkshaonexe](https://github.com/mkshaonexe)
 
 ## 📄 License
 
@@ -176,7 +171,7 @@ If this extension helps you stay focused, please:
 
 ---
 
-**Made with ❤️ by [mkshaon](https://github.com/mkshaon)**
+**Made with ❤️ by [mkshaonexe](https://github.com/mkshaonexe)**
 
 *Take control of your social media experience. Stay focused, stay productive.*
 

@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Facebook Reels Blocker (except /reels)",
+  "name": "Facebook Reels Blocker - No Distraction",
   "version": "0.0.9",
   "description": "Hide Facebook Reels across the site except on the dedicated /reels page.",
   "permissions": ["storage", "tabs"],
