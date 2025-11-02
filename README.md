@@ -11,32 +11,11 @@ A powerful Chrome/Edge extension that removes distracting elements from Facebook
 
 ## ✨ Features
 
-### 🎬 **Smart Reels Blocking**
-- Blocks Facebook Reels across all pages except the dedicated `/reels` page
-- Redirects single reel pages to the main reels hub for better UX
-- Supports multiple languages (English, Arabic, Spanish, Chinese, etc.)
-- Uses advanced DOM detection with MutationObserver for dynamic content
-
-### 📚 **Stories Management**
-- Hide Facebook Stories from your feed and navigation
-- Removes story creation prompts and carousels
-- Maintains clean interface without story distractions
-
-### 🏠 **Home Feed Control**
-- Option to completely hide the home feed for ultimate focus
-- Automatically hides left and right sidebars on home page
-- Preserves other Facebook functionality while removing feed distractions
-
-### 🔔 **Notification Badge Management**
-- Hide red notification badges on Messenger and Notifications
-- Reduce anxiety-inducing notification pressure
-- Maintain functionality while removing visual distractions
-
-### ⚡ **Performance Optimized**
-- Lightweight and fast execution
-- Minimal resource usage
-- Real-time settings updates without page refresh
-- Efficient DOM scanning with throttled operations
+- 🎬 **Smart Reels Blocking** - Blocks Facebook Reels across all pages except `/reels` page, redirects single reel pages, supports multiple languages, uses advanced DOM detection
+- 📚 **Stories Management** - Hide Facebook Stories from feed and navigation, removes story creation prompts and carousels
+- 🏠 **Home Feed Control** - Option to completely hide the home feed, automatically hides left and right sidebars on home page
+- 🔔 **Notification Badge Management** - Hide red notification badges on Messenger and Notifications to reduce distraction
+- ⚡ **Performance Optimized** - Lightweight and fast execution, minimal resource usage, real-time settings updates without page refresh
 
 ## 🚀 Quick Install
 
@@ -156,7 +135,7 @@ cd Facebook_NO_Distraction
 
 - **Issues**: [GitHub Issues](https://github.com/mkshaonexe/Facebook_NO_Distraction/issues)
 - **Feature Requests**: [GitHub Discussions](https://github.com/mkshaonexe/Facebook_NO_Distraction/discussions)
-- **Developer**: [@mkshaonexe](https://github.com/mkshaonexe)
+- **Developer**: [MK X Shaon](https://github.com/mkshaonexe) (@mkshaonexe)
 
 ## 📄 License
 
@@ -172,7 +151,7 @@ If this extension helps you stay focused, please:
 
 ---
 
-**Made with ❤️ by [mkshaonexe](https://github.com/mkshaonexe)**
+**Made with ❤️ by [MK X Shaon](https://github.com/mkshaonexe)**
 
 *Take control of your social media experience. Stay focused, stay productive.*
 
