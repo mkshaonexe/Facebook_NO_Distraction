@@ -140,7 +140,8 @@ cd Facebook_NO_Distraction
 
 ## 📝 Changelog
 
-### Version 0.0.9
+### Version 0.0.9 (Latest - Updated: December 2024)
+- ✅ Added extension icon (icon128.png)
 - ✅ Fixed missing tabs permission for Chrome extension compliance
 - ✅ Updated extension version and last update time
 

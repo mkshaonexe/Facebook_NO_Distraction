@@ -3,6 +3,9 @@
   "name": "Facebook Reels Blocker - No Distraction",
   "version": "0.0.9",
   "description": "Hide Facebook Reels across the site except on the dedicated /reels page.",
+  "icons": {
+    "128": "icon128.png"
+  },
   "permissions": ["storage", "tabs"],
   "action": {
     "default_popup": "src/popup.html",
