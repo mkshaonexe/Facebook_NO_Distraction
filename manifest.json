@@ -1,15 +1,19 @@
 {
   "manifest_version": 3,
-  "name": "Facebook Reels Blocker - No Distraction",
-  "version": "0.0.9",
-  "description": "Hide Facebook Reels across the site except on the dedicated /reels page.",
+  "name": "Focus Mode - No Reels No Distractions",
+  "version": "1.0.0",
+  "description": "Remove distracting content from social media. Hide Reels, Stories, Home Feed, and notification badges. Stay focused and productive while browsing.",
+  "author": "mkshaonexe",
+  "homepage_url": "https://github.com/mkshaonexe/Facebook_NO_Distraction",
   "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
     "128": "icon128.png"
   },
-  "permissions": ["storage", "tabs"],
+  "permissions": ["storage", "activeTab"],
   "action": {
     "default_popup": "src/popup.html",
-    "default_title": "FB Reels/Stories/Videos Blocker"
+    "default_title": "Focus Mode - No Distractions"
   },
   "content_scripts": [
     {

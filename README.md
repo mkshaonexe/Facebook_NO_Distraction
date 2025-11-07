@@ -1,13 +1,13 @@
-# 🚫 Facebook No Distraction Extension
+# 🎯 Focus Mode - No Reels No Distractions
 
-**Transform your Facebook experience into a focused, distraction-free environment**
+**Transform your social media experience into a focused, distraction-free environment**
 
 A powerful Chrome/Edge extension that removes distracting elements from Facebook while preserving the content you actually want to see. Block reels, stories, home feed distractions, and notification badges with granular control.
 
 [![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-brightgreen?logo=googlechrome)](https://github.com/mkshaonexe/Facebook_NO_Distraction)
 [![Edge Compatible](https://img.shields.io/badge/Edge-Compatible-blue?logo=microsoftedge)](https://github.com/mkshaonexe/Facebook_NO_Distraction)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-0.0.9-blue.svg)](manifest.json)
+[![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](manifest.json)
 
 ## ✨ Features
 
@@ -19,13 +19,19 @@ A powerful Chrome/Edge extension that removes distracting elements from Facebook
 
 ## 🚀 Quick Install
 
-### Chrome / Edge Installation
+### From Chrome Web Store (Coming Soon)
+The extension will be available on Chrome Web Store after review approval.
+
+### Manual Installation (Developer Mode)
 1. Download or clone this repository
 2. Open `chrome://extensions/` (Chrome) or `edge://extensions/` (Edge)
 3. Enable "Developer mode" in the top right
 4. Click "Load unpacked" and select the project folder
 5. Visit Facebook and refresh the page
 6. Click the extension icon to customize settings
+
+### For Developers: Chrome Web Store Submission
+See [CHROME_STORE_SUBMISSION_GUIDE.md](CHROME_STORE_SUBMISSION_GUIDE.md) for complete submission instructions.
 
 ### Firefox (Coming Soon)
 Firefox support is planned for future releases.
@@ -84,10 +90,20 @@ The extension detects and blocks content in multiple languages:
 
 ## 🔒 Privacy & Permissions
 
-- **Minimal Permissions**: Only requests storage, tabs, and Facebook access
-- **No Data Collection**: All settings stored locally
+- **Minimal Permissions**: Only requests storage, activeTab, and Facebook access
+- **No Data Collection**: All settings stored locally on your device
+- **No Tracking**: Zero analytics, zero external requests
 - **No External Requests**: Works entirely offline
 - **Open Source**: Full transparency of functionality
+- **Privacy Policy**: See [PRIVACY_POLICY.md](PRIVACY_POLICY.md) for complete details
+
+### Why We Need These Permissions:
+
+1. **Storage** - To save your extension settings (Block Reels, Stories, etc.)
+2. **Active Tab** - To apply your settings to the current Facebook tab
+3. **Host Permissions (facebook.com)** - To modify Facebook page appearance based on your preferences
+
+**We do NOT collect, transmit, or share any of your personal data.**
 
 ## 🛠️ Development
 
@@ -119,12 +135,24 @@ cd Facebook_NO_Distraction
 
 ## 📝 Changelog
 
-### Version 0.0.9 (Latest - Updated: December 2024)
+### Version 1.0.0 (Latest - November 2024) 🎉
+**Chrome Web Store Compliance Update**
+- ✅ Fixed extension name (removed trademark violation, fixed typo)
+- ✅ Updated to use `activeTab` permission instead of `tabs` (less intrusive)
+- ✅ Added comprehensive privacy policy (PRIVACY_POLICY.md)
+- ✅ Enhanced description with all features listed
+- ✅ Added author and homepage metadata
+- ✅ Removed hardcoded dates from popup
+- ✅ Added support for multiple icon sizes (16x16, 48x48, 128x128)
+- ✅ Improved Chrome Web Store compliance
+- ✅ Better permission justification documentation
+
+### Version 0.0.9 (November 2024)
 - ✅ Added extension icon (icon128.png)
 - ✅ Fixed missing tabs permission for Chrome extension compliance
 - ✅ Updated extension version and last update time
 
-### Version 0.0.8
+### Version 0.0.8 (Initial Release)
 - ✅ Core blocking features: Reels, Stories, Home Feed, Notification Badges
 - ✅ Multi-language support for content detection
 - ✅ Real-time settings updates
